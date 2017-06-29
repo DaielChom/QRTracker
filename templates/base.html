@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='es'>
+  <head>
+    <meta charset='UTF-8'>
+    <title>{{ title }}</title>
+    <link href="{{ url_for('static', filename = 'css/normalize.css') }}" rel='stylesheet'>
+    <link href="{{ url_for('static', filename = 'css/main.css') }}" rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+  </head>
+  <body>
+    <div class='width100 alto'>
+      <div class='div_super absolute width60 fondo_blanco top20' id='card'>
+        {% for pestana in tables %}
+        <a class='width33 relative inline raleway' href='/{{ pestana }}' id='pestana'>
+          {% if pestana == title %}
+          <div class='fondo_verde_oscuro width100 relative height70 padding2'>
+            {{ pestana }}
+          </div>
+          {% endif %}
+          {% if pestana != title %}
+          <div class='fondo_verde width100 relative height70 padding2'>
+            {{ pestana }}
+          </div>
+          {% endif %}
+        </a>
+        {% endfor %}
+        {% block content %} {% endblock %}
+      </div>
+      <div class='div_fondo_super relative fondo_gris width100 height30'>
+        <div class='raleway blanco relative' id='titulo'>
+          QRTracker
+        </div>
+      </div>
+      <div class='div_fondo_inf relative width100 height70'></div>
+    </div>
+  </body>
+</html>

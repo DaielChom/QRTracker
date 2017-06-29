@@ -1,0 +1,28 @@
+!!!5
+%html{lang:"es"}
+  %head
+    %meta{charset:"UTF-8"}
+    %title {{ title }}
+    %link{rel:"stylesheet", href:"{{ url_for('static', filename = 'css/normalize.css') }}"}
+    %link{rel:"stylesheet", href:"{{ url_for('static', filename = 'css/main.css') }}"}
+    %link{href:"https://fonts.googleapis.com/css?family=Raleway", rel:"stylesheet"}
+    %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+  %body
+    .width100.alto
+      .div_super.absolute.width60.fondo_blanco.top20#card
+        {% for pestana in tables %}
+        %a.width33.relative.inline.raleway#pestana{href:"/{{ pestana }}"}
+          {% if pestana == title %}
+          .fondo_verde_oscuro.width100.relative.height70.padding2
+            {{ pestana }}
+          {% endif %}
+          {% if pestana != title %}
+          .fondo_verde.width100.relative.height70.padding2
+            {{ pestana }}
+          {% endif %}
+        {% endfor %}
+        {% block content %} {% endblock %}
+      .div_fondo_super.relative.fondo_gris.width100.height30
+        .raleway.blanco.relative#titulo
+          QRTracker
+      .div_fondo_inf.relative.width100.height70
