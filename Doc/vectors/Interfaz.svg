@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="Interfaz.svg"
+   inkscape:export-filename="/home/daielchom/Documentos/Diplomado-Dunti/Modulo_android/Proyecto_Final/Documentacion/img/Interfaz.png"
+   inkscape:export-xdpi="100"
+   inkscape:export-ydpi="100">
+  <defs
+     id="defs2">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter4620"
+       x="-0.024082758"
+       width="1.0481655"
+       y="-0.035815385"
+       height="1.0716308">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.4888138"
+         id="feGaussianBlur4622" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="487.59812"
+     inkscape:cy="360.09355"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-page="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-87)">
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4485"
+       width="297"
+       height="210"
+       x="0"
+       y="87.000008" />
+    <rect
+       style="opacity:1;fill:#a7ac93;fill-opacity:1;stroke:none;stroke-width:3.13860488;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4485-3"
+       width="299.44879"
+       height="82.070389"
+       x="-1.224401"
+       y="85.775604" />
+    <rect
+       style="opacity:0.35899999;fill:#000000;fill-opacity:1;stroke:none;stroke-width:5.25923729;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter4620)"
+       id="rect4502-6"
+       width="248.02612"
+       height="166.77618"
+       x="24.486938"
+       y="121.06679" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:5.25923729;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4502"
+       width="248.02612"
+       height="166.77618"
+       x="24.486938"
+       y="121.59595" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:0;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="12.726097"
+       y="110.36529"
+       id="text4626"><tspan
+         sodipodi:role="line"
+         id="tspan4624"
+         x="12.726097"
+         y="110.36529"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.11111069px;font-family:Sansation;-inkscape-font-specification:Sansation;fill:#ffffff;stroke-width:0.26458332">QRTraker</tspan></text>
+    <rect
+       style="opacity:1;fill:#37483e;fill-opacity:1;stroke:none;stroke-width:3.53010225;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4490"
+       width="124.013"
+       height="27.237385"
+       x="24.486938"
+       y="121.59595" />
+    <rect
+       style="opacity:1;fill:#536c5d;fill-opacity:1;stroke:none;stroke-width:3.53010249;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4490-3"
+       width="124.01301"
+       height="27.237387"
+       x="148.49994"
+       y="121.59595" />
+    <rect
+       style="opacity:1;fill:#00aa00;fill-opacity:1;stroke:none;stroke-width:0.59085214;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4510"
+       width="124.01299"
+       height="1.9411652"
+       x="24.486938"
+       y="146.89217" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:0;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="69.696442"
+       y="137.47548"
+       id="text4626-6"><tspan
+         sodipodi:role="line"
+         id="tspan4624-7"
+         x="69.696442"
+         y="137.47548"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.81944466px;font-family:Sansation;-inkscape-font-specification:Sansation;fill:#ffffff;stroke-width:0.26458332">Paquete</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:0;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="196.39232"
+       y="138.2937"
+       id="text4626-6-5"><tspan
+         sodipodi:role="line"
+         id="tspan4624-7-3"
+         x="196.39232"
+         y="138.2937"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.81944466px;font-family:Sansation;-inkscape-font-specification:Sansation;fill:#ffffff;stroke-width:0.26458332">Cliente</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:0;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00aa00;fill-opacity:1;stroke:#00aa00;stroke-width:0.26458332;stroke-opacity:1;"
+       x="38.931549"
+       y="170.37798"
+       id="text4550"><tspan
+         sodipodi:role="line"
+         id="tspan4548"
+         x="38.931549"
+         y="170.37798"
+         style="stroke-width:0.26458332;font-size:7.05555556px;fill:#00aa00;fill-opacity:1;stroke:#00aa00;stroke-opacity:1;"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Sansation;-inkscape-font-specification:Sansation;font-size:7.05555556px;fill:#00aa00;fill-opacity:1;stroke:#00aa00;stroke-opacity:1;"
+   id="tspan4552">Nombre:</tspan> </tspan></text>
+    <path
+       style="fill:#00aa00;stroke:#00aa00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1"
+       d="M 39.309524,175.29167 H 233.21131"
+       id="path4554"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
