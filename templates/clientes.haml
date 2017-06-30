@@ -1,7 +1,25 @@
+/ Base.html
 {% extends 'base.html' %}
+
+/ Block
 {% block content %}
-%h1.raleway
-  clientes
+
+/ macro.html -> function render_flied
+{% from '_macro.html' import render_field %}
+
+%form.raleway
+  / Input necessary for CSRFProtect
+  %input{type:'Hidden', name:"csrf_token", value:' {{ csrf_token() }} '}
+
+  / Rende Inputs in a loop
+  {% for input in client_form %}
+
+  {{ render_field( input, class="", id="", pattern="{ 4, 25 }", required="True" ) }}
+  {{ render_field( input.label, class="" )}}
+
+  {% endfor %}
+
+  %input{type:"submit", value:"AGREGAR"}
 
 
 {% endblock %}
