@@ -46,8 +46,13 @@ def cientes():
 # Route paquetes
 @app.route('/paquetes', methods=['GET', 'POST'])
 def paquetes():
+
+    # Instance package form
+    paquete_form = formpy.Package(None)
+    
+    # GET
     if request.method == 'GET':
-        return render_template('paquetes.html', title = "paquetes", tables = tables)
+        return render_template('paquetes.html', title = "paquetes", tables = tables, paquete_form = paquete_form)
 
 
 # main
