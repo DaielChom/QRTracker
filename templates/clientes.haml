@@ -1,4 +1,4 @@
-/ Base.html
+/dBase.html
 {% extends 'base.html' %}
 
 / Block
@@ -14,12 +14,13 @@
   / Rende Inputs in a loop
   {% for input in client_form %}
 
-  {{ render_field( input, class="", id="", pattern="{ 4, 25 }", required="True" ) }}
   {{ render_field( input.label, class="" )}}
+  {{ render_field( input, class="", id="", required="True" ) }}
+
 
   {% endfor %}
 
-  %input{type:"submit", value:"AGREGAR"}
+  %input#enviar{type:"button", value:"AGREGAR"}
 
 
 {% endblock %}

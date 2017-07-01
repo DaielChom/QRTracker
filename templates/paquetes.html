@@ -1,6 +1,16 @@
+<!-- Extends base -->
 {% extends 'base.html' %}
+<!-- Block -->
 {% block content %}
-<h1 class='raleway'>
-  paquetes
-</h1>
+{% from '_macro.html' import render_field %}
+<form class='raleway'>
+  <!-- Input necessary for CSRFProtect -->
+  <input name='csrf_token' type='Hidden' value=' {{ csrf_token() }} '>
+  <!-- Rende Inputs in a loop -->
+  {% for input in paquete_form %}
+  {{ render_field( input.label, class="" )}}
+  {{ render_field( input, class="", id="", pattern="{ 4, 25 }", required="True" ) }}
+  {% endfor %}
+  <input id='enviar' type='submit' value='AGREGAR'>
+</form>
 {% endblock %}

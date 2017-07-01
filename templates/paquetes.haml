@@ -1,7 +1,22 @@
+/ Extends base
 {% extends 'base.html' %}
+
+/ Block
 {% block content %}
-%h1.raleway
-  paquetes
+{% from '_macro.html' import render_field %}
+
+%form.raleway
+  / Input necessary for CSRFProtect
+  %input{type:'Hidden', name:"csrf_token", value:' {{ csrf_token() }} '}
+
+  / Rende Inputs in a loop
+  {% for input in paquete_form %}
+
+  {{ render_field( input.label, class="" )}}
+  {{ render_field( input, class="", id="", pattern="{ 4, 25 }", required="True" ) }}
 
 
+  {% endfor %}
+
+  %input#enviar{type:"submit", value:"AGREGAR"}
 {% endblock %}

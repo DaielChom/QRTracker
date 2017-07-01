@@ -12,10 +12,10 @@
   / Rende Inputs in a loop
   {% for input in funcionario_form %}
 
-  {{ render_field( input, class="", id="", pattern="{ 4, 25 }", required="True" ) }}
   {{ render_field( input.label, class="" )}}
-
+  {{ render_field( input, class="", id="", pattern="{ 4, 25 }", required="True" ) }}
+  
   {% endfor %}
 
-  %input{type:"submit", value:"AGREGAR"}
+  %input#enviar{type:"submit", value:"AGREGAR"}
 {% endblock %}
