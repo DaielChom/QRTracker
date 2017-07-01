@@ -123,6 +123,48 @@ $verde_oscuro: #37483e;
 
 }
 
+
+#enviar{
+  position: relative;
+  border: 0;
+  width: auto;
+  background-color: $verde;
+  display: inline-block;
+  color: white;
+  border-radius: 4px;
+  padding: 2%;
+  margin: 1%;
+  left: 80%;
+  font-size: 2vh;
+}
+
+input, select{
+  position: relative;
+  width: 95%;
+  left: 0.5%;
+  border: 0;
+  padding: 2%;
+  border-bottom: $verde_oscuro solid 1px;
+}
+select{
+  background-color: inherit;
+  width: 95%;
+}
+label{
+  position: relative;
+  left: 1%;
+  z-index: 1;
+  top: 1em;
+  font-size: 2.3vh;
+}
+
+
+input:focus{
+  border-bottom: $verde_oscuro solid 2px;
+}
+
+
+
 .div_super{
   z-index: 1;
   left: 20%;
@@ -215,6 +257,9 @@ $verde_oscuro: #37483e;
   #card{
     width: 70%;
     left: 15%;
+  }
+  #enviar{
+    left: 70%;
   }
 }
 
