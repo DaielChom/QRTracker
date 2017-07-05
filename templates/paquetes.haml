@@ -5,7 +5,7 @@
 {% block content %}
 {% from '_macro.html' import render_field %}
 
-%form.raleway
+%form.raleway.submit
   / Input necessary for CSRFProtect
   %input{type:'Hidden', name:"csrf_token", value:' {{ csrf_token() }} '}
 
@@ -13,7 +13,7 @@
   {% for input in paquete_form %}
 
   {{ render_field( input.label, class="" )}}
-  {{ render_field( input, class="", id="", pattern="{ 4, 25 }", required="True" ) }}
+  {{ render_field( input, class="", id="", pattern="{ 4, 25 }", required="True", pattern ="[a-zA-Z0-9 ]{4,25}" ) }}
 
 
   {% endfor %}

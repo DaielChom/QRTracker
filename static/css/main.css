@@ -124,6 +124,11 @@ textarea {
   font-size: 2vh;
 }
 
+#response_message {
+  text-align: center;
+  color: white;
+}
+
 input, select {
   position: relative;
   width: 95%;
@@ -179,6 +184,14 @@ input:focus {
   background-color: white;
 }
 
+.fondo_correcto {
+  background-color: #4caf50;
+}
+
+.fondo_incorrecto {
+  background-color: #f44336;
+}
+
 .blanco {
   color: white;
 }
@@ -221,6 +234,10 @@ input:focus {
 
 .inline {
   display: inline-block;
+}
+
+.hidden {
+  display: hidden;
 }
 
 .padding2 {

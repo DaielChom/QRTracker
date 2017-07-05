@@ -11,7 +11,7 @@ class Official(db.Model):
     # Atributes
     id_official = db.Column(db.String(20), primary_key = True, nullable = False)
     nanme_official = db.Column(db.String(20), nullable = True)
-    packages = db.relationship("Package", backref="Official", lazy ="dinamic")
+    
 
 
     # Constructor
@@ -26,7 +26,7 @@ class Client(db.Model):
     id_client = db.Column(db.String(20), primary_key= True, nullable = False)
     name_client = db.Column(db.String(20), nullable= False)
     address_client = db.Column(db.String(20), nullable= False)
-    packages = db.relationship("Package", backref="Client", lazy ="dinamic")
+    packages = db.relationship("Package", backref="Client", lazy ="dynamic")
 
     def __init__(self, id_client, name_client, address_client):
         self.id_client = id_client

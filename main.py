@@ -1,9 +1,11 @@
 # Libraries
 from flask import Flask
 from flask import request
+from flask import jsonify
 from config import DevelopmentConfig
-from flask_wtf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect
 from modelo import db
+from modelo import Client
 from flask import render_template
 import formpy
 
@@ -43,13 +45,43 @@ def cientes():
     if request.method == 'GET':
         return render_template('clientes.html', title = "clientes", tables = tables, client_form = client_form )
 
+    # POST
+    if request.method == 'POST':
+
+        # Get data from request
+        client_form = formpy.Client(request.form)
+
+        # form validate
+        if client_form.validate():
+
+            # Check if client exists
+            client_query = Client.query.filter_by(id_client = client_form.id_client.data).first()
+
+            if client_query is None:
+
+                # instance from db of client_form
+                client_new = Client(client_form.id_client.data,
+                                    client_form.name_client.data,
+                                    client_form.address_client.data)
+
+                # add db
+                db.session.add(client_new)
+                db.session.commit()
+                return jsonify(success = 1, message="Usuario creado")
+            else:
+                return jsonify(success = 0,  error_msg=str("El usuario ya existe"))
+
+        else:
+            return jsonify(success = 0, error_msg=str("Invalid Form"))
+
+
 # Route paquetes
 @app.route('/paquetes', methods=['GET', 'POST'])
 def paquetes():
 
     # Instance package form
     paquete_form = formpy.Package(None)
-    
+
     # GET
     if request.method == 'GET':
         return render_template('paquetes.html', title = "paquetes", tables = tables, paquete_form = paquete_form)

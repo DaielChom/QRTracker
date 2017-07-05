@@ -4,14 +4,15 @@
 {% block content %}
 <!-- macro.html -> function render_flied -->
 {% from '_macro.html' import render_field %}
-<form class='raleway'>
+<div class='raleway absolute width100 hidden' id='response_message'></div>
+<form class='raleway submit'>
   <!-- Input necessary for CSRFProtect -->
-  <input name='csrf_token' type='Hidden' value=' {{ csrf_token() }} '>
+  <input name='csrf_token' type='hidden' value='{{ csrf_token() }}'>
   <!-- Rende Inputs in a loop -->
   {% for input in client_form %}
   {{ render_field( input.label, class="" )}}
-  {{ render_field( input, class="", id="", required="True" ) }}
+  {{ render_field( input, class="", id="", required="True", pattern ="[a-zA-Z0-9 ]{4,25}") }}
   {% endfor %}
-  <input id='enviar' type='button' value='AGREGAR'>
+  <input id='enviar' type='submit' value='AGREGAR'>
 </form>
 {% endblock %}
