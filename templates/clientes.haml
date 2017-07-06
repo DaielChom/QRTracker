@@ -1,4 +1,4 @@
-/dBase.html
+/ Extends base
 {% extends 'base.html' %}
 
 / Block
@@ -10,7 +10,7 @@
 .raleway.absolute.width100.hidden#response_message
 %form.raleway.submit
   / Input necessary for CSRFProtect
-  %input{type:"hidden", name:"csrf_token", value:"{{ csrf_token() }}"}
+  %input{type:"hidden", name:"csrf_token", value:" {{ csrf_token() }}"}
 
   / Rende Inputs in a loop
   {% for input in client_form %}
@@ -18,10 +18,7 @@
   {{ render_field( input.label, class="" )}}
   {{ render_field( input, class="", id="", required="True", pattern ="[a-zA-Z0-9 ]{4,25}") }}
 
-
   {% endfor %}
 
   %input#enviar{type:"submit", value:"AGREGAR"}
-
-
 {% endblock %}

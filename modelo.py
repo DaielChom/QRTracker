@@ -10,14 +10,12 @@ class Official(db.Model):
 
     # Atributes
     id_official = db.Column(db.String(20), primary_key = True, nullable = False)
-    nanme_official = db.Column(db.String(20), nullable = True)
-    
-
+    name_official = db.Column(db.String(20), nullable = True)
 
     # Constructor
     def __init__(self, id_official, name_official):
-        self.id_official = id_offcial
-        self.name_official = nanme_official
+        self.id_official = id_official
+        self.name_official = name_official
 
 class Client(db.Model):
 

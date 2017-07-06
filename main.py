@@ -6,6 +6,7 @@ from config import DevelopmentConfig
 from flask_wtf.csrf import CSRFProtect
 from modelo import db
 from modelo import Client
+from modelo import Official
 from flask import render_template
 import formpy
 
@@ -33,6 +34,29 @@ def funcionarios():
     if request.method == 'GET':
         return render_template('funcionarios.html', title = "funcionarios", tables = tables, funcionario_form = funcionario_form)
 
+    # POST
+    if request.method == "POST":
+
+        # Get data from request
+        official_form =  formpy.Official(request.form)
+
+        # form validate
+        if official_form.validate():
+            # Check if offical exists
+            official_query = Official.query.filter_by(id_official = official_form.id_official.data).first()
+            if official_query is None:
+
+                # new official for insert to db
+                official_new = Official(official_form.id_official.data,
+                                        official_form.name_official.data)
+                # db Insert
+                db.session.add(official_new)
+                db.session.commit()
+                return jsonify(success = 1, message="El funcionario a sido creado")
+            else:
+                return jsonify(success = 0,  error_msg=str("El funcionario ya existe"))
+        else:
+            return jsonify(success = 0, error_msg=str("campos invalidos"))
 
 # Route clientes
 @app.route('/clientes', methods=['GET', 'POST'])
@@ -63,17 +87,14 @@ def cientes():
                 client_new = Client(client_form.id_client.data,
                                     client_form.name_client.data,
                                     client_form.address_client.data)
-
                 # add db
                 db.session.add(client_new)
                 db.session.commit()
-                return jsonify(success = 1, message="Usuario creado")
+                return jsonify(success = 1, message="El cliente a sido creado")
             else:
-                return jsonify(success = 0,  error_msg=str("El usuario ya existe"))
-
+                return jsonify(success = 0,  error_msg=str("El cliente ya existe"))
         else:
-            return jsonify(success = 0, error_msg=str("Invalid Form"))
-
+            return jsonify(success = 0, error_msg=str("campos invalidos"))
 
 # Route paquetes
 @app.route('/paquetes', methods=['GET', 'POST'])
