@@ -7,6 +7,7 @@ from flask_wtf.csrf import CSRFProtect
 from modelo import db
 from modelo import Client
 from modelo import Official
+from modelo import Package
 from flask import render_template
 import formpy
 
@@ -103,9 +104,39 @@ def paquetes():
     # Instance package form
     paquete_form = formpy.Package(None)
 
+    # For dinamic SelectField
+    paquete_form.client.choices.append(('',''))
+    if Client.query.all() is not None:
+        for i in Client.query.all():
+            paquete_form.client.choices.append((i.id_client, i.id_client))
+
     # GET
     if request.method == 'GET':
         return render_template('paquetes.html', title = "paquetes", tables = tables, paquete_form = paquete_form)
+
+    # POST
+    if request.method == "POST":
+        package_form = formpy.Package(request.form)
+
+        # form validate
+        if package_form.validate():
+            package_query = Package.query.filter_by(id_package = package_form.id_package.data).first()
+
+            if package_query is None:
+                package_new = Package(package_form.id_package.data,
+                                      package_form.client.data,
+                                      package_form.descrption_package.data,
+                                      package_form.estate_package.data)
+                db.session.add(package_new)
+                db.session.commit()
+                return jsonify(success = 1, message="El paquete a sido creado")
+
+            else:
+                return jsonify(success = 0,  error_msg=str("El paquete ya existe"))
+
+        else:
+            return jsonify(success = 0, error_msg=str("campos invalidos"))
+
 
 
 # main

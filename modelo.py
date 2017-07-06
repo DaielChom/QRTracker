@@ -40,6 +40,12 @@ class Package(db.Model):
     descrption_package = db.Column(db.Text(), nullable = False)
     estate_package = db.Column(db.String(20), nullable = False)
 
+    def __init__(self, id_package, client, descrption_package, estate_package):
+        self.id_package = id_package
+        self.client = client
+        self.descrption_package = descrption_package
+        self.estate_package = estate_package
+
 monitor = db.Table('monitor',
                     db.Column('id_monitor', db.String(20), primary_key = True, nullable = True),
                     db.Column('package', db.String(20), db.ForeignKey('Package.id_package')),

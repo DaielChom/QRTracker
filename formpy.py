@@ -7,6 +7,7 @@ from wtforms import TextField
 from wtforms import FloatField
 from wtforms import IntegerField
 
+
 # Official form
 class Official(Form):
 
@@ -38,6 +39,6 @@ class Package(Form):
 
     # Atributes
     id_package = StringField("ID", [validacion_tamano, validacion_requerido] )
-    client = SelectField('Addressee', choices=[])
+    client = SelectField('Client', choices=[])
     descrption_package = TextField('Desrciption', [validacion_requerido])
-    estate_package = SelectField('Estate', choices=[('0', ''),('1', 'En Bodega'),('2', 'Recogido'),('3', 'Entregado'),('4', 'Devuelto')])
+    estate_package = SelectField('Estate', choices=[('', ''),('En Bodega', 'En Bodega'),('Recogido', 'Recogido'),('Entregado', 'Entregado'),('Devuelto', 'Devuelto')])
