@@ -12,7 +12,7 @@
     <div class='width100 alto'>
       <div class='div_super absolute width60 fondo_blanco top20' id='card'>
         {% for pestana in tables %}
-        <a class='width33 relative inline raleway' href='/{{ pestana }}' id='pestana'>
+        <a class='width24 relative inline raleway' href='/{{ pestana }}' id='pestana'>
           {% if pestana == title %}
           <div class='fondo_verde_oscuro width100 relative height70 padding2'>
             {{ pestana }}
@@ -28,7 +28,7 @@
         {% block content %} {% endblock %}
       </div>
       <div class='div_fondo_super relative fondo_gris width100 height30'>
-        <div class='raleway blanco relative' id='titulo'>
+        <div class='raleway blanco absolute' id='titulo'>
           QRTracker
         </div>
       </div>

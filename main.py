@@ -15,7 +15,7 @@ import formpy
 app = Flask(__name__) # Flask
 app.config.from_object(DevelopmentConfig) # Config
 csrf = CSRFProtect() # encrypt
-tables = ["clientes", "paquetes", "funcionarios"]
+tables = ["clientes", "paquetes", "funcionarios","QR"]
 
 # Route /
 @app.route('/', methods=['GET'])
@@ -103,6 +103,7 @@ def paquetes():
 
     # Instance package form
     paquete_form = formpy.Package(None)
+    paquete_form.client.choices=[] # Evita repeticion
 
     # For dinamic SelectField
     paquete_form.client.choices.append(('',''))
@@ -129,6 +130,7 @@ def paquetes():
                                       package_form.estate_package.data)
                 db.session.add(package_new)
                 db.session.commit()
+
                 return jsonify(success = 1, message="El paquete a sido creado")
 
             else:
@@ -136,6 +138,21 @@ def paquetes():
 
         else:
             return jsonify(success = 0, error_msg=str("campos invalidos"))
+
+@app.route('/QR', methods=['GET'])
+def QR():
+    QR_form = formpy.QR(None)
+    QR_form.package.choices = []
+
+    # For dinamic SelectField
+    QR_form.package.choices.append(('',''))
+    if Package.query.all() is not None:
+        for i in Package.query.all():
+            QR_form.package.choices.append((i.id_package, i.id_package))
+
+    chl = request.args.get('package','None')
+    uri = 'https://chart.googleapis.com/chart?chl='+chl+"&chld=H&choe=UTF-8&chs=300x300&cht=qr"
+    return render_template('QR.html', title = "QR", tables = tables, QR_form = QR_form, uri = uri, chl = chl)
 
 
 

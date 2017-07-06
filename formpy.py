@@ -42,3 +42,11 @@ class Package(Form):
     client = SelectField('Client', choices=[])
     descrption_package = TextField('Desrciption', [validacion_requerido])
     estate_package = SelectField('Estate', choices=[('', ''),('En Bodega', 'En Bodega'),('Recogido', 'Recogido'),('Entregado', 'Entregado'),('Devuelto', 'Devuelto')])
+
+class QR(Form):
+
+    validacion_tamano = validators.length(min = 4, max = 25)
+    validacion_requerido = validators.Required(message="Requerido")
+
+    package = SelectField('Package', choices=[])
+    

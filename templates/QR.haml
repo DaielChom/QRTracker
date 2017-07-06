@@ -1,0 +1,29 @@
+/ Extends base
+{% extends 'base.html' %}
+
+/ Block
+{% block content %}
+
+/ macro.html -> function render_flied
+{% from '_macro.html' import render_field %}
+
+.raleway.absolute.width100.hidden#response_message
+%form.raleway{method:"GET"}
+
+  / Input necessary for CSRFProtect
+  /%input{type:"hidden", name:"csrf_token", value:"{{csrf_token()}}"}
+
+  / Rende Inputs in a loop
+  {% for input in QR_form %}
+
+  {{ render_field( input.label, class="" )}}
+  {{ render_field( input, class="qr_selector", id="", required="True", pattern ="[a-zA-Z0-9 ]{4,25}" ) }}
+
+  {% endfor %}
+
+  %input#enviar{type:"submit", value:"GENERAR QR"}
+  .resultador.width100
+    .raleway.algincenter {{chl}}
+    %img.relative.block.center{:src=> "{{uri}}" }
+    /%a{href:"{{uri}}", download:"sss.png"} Download Text
+{% endblock %}
