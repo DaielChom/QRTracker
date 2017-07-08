@@ -26,14 +26,25 @@ def index():
 
 # Route funcionarios
 @app.route('/funcionarios', methods=['GET', 'POST'])
-def funcionarios():
+@app.route('/funcionarios/<id_official>', methods=['GET'])
+def funcionarios(id_official = None):
 
     # Intancia de un formulario para Funcionarios
     funcionario_form = formpy.Official(None)
 
     # GET
     if request.method == 'GET':
-        return render_template('funcionarios.html', title = "funcionarios", tables = tables, funcionario_form = funcionario_form)
+
+        # GET a offical
+        if id_official:
+            if Official.query.filter_by(id_official = id_official).first():
+                name =  Official.query.filter_by(id_official = id_official).first().name_official
+                return jsonify(id_official = id_official, name_official=name)
+            else:
+                return jsonify(id_official = None, name_official=None)
+
+        else:
+            return render_template('funcionarios.html', title = "funcionarios", tables = tables, funcionario_form = funcionario_form)
 
     # POST
     if request.method == "POST":
