@@ -3,7 +3,7 @@ import os
 
 # Class
 class Config(object):
-    SECRET_KEY = 'geomatica'
+    SECRET_KEY = ''
 
 # Developer class - Developer config
 class DevelopmentConfig(Config):

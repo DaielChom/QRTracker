@@ -3,18 +3,19 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from config import DevelopmentConfig
-from flask_wtf.csrf import CSRFProtect
+#from flask_wtf.csrf import CSRFProtect
 from modelo import db
 from modelo import Client
 from modelo import Official
 from modelo import Package
 from flask import render_template
 import formpy
+import json
 
 # init ...
 app = Flask(__name__) # Flask
 app.config.from_object(DevelopmentConfig) # Config
-csrf = CSRFProtect() # encrypt
+#csrf = CSRFProtect() # encrypt
 tables = ["clientes", "paquetes", "funcionarios","QR"]
 
 # Route /
@@ -38,8 +39,9 @@ def funcionarios(id_official = None):
         # GET a offical
         if id_official:
             if Official.query.filter_by(id_official = id_official).first():
+
                 name =  Official.query.filter_by(id_official = id_official).first().name_official
-                return jsonify(id_official = id_official, name_official=name)
+                return jsonify({"id_official": id_official, "name_official": name})
             else:
                 return jsonify(id_official = None, name_official=None)
 
@@ -110,7 +112,8 @@ def cientes():
 
 # Route paquetes
 @app.route('/paquetes', methods=['GET', 'POST'])
-def paquetes():
+@app.route('/paquetes/<id_paquete>', methods=['GET'])
+def paquetes(id_paquete = None):
 
     # Instance package form
     paquete_form = formpy.Package(None)
@@ -124,31 +127,47 @@ def paquetes():
 
     # GET
     if request.method == 'GET':
-        return render_template('paquetes.html', title = "paquetes", tables = tables, paquete_form = paquete_form)
+        if id_paquete:
+            if Package.query.filter_by(id_package = id_paquete).first():
+                package_response = Package.query.filter_by(id_package = id_paquete).first();
+                return jsonify(id_package = package_response.id_package, client = package_response.client, descrption_package = package_response.descrption_package, state_package = package_response.estate_package)
+            else:
+                return jsonify(id_package = None, client=None, descrption_package = None, state_package = None)
+
+        else:
+            return render_template('paquetes.html', title = "paquetes", tables = tables, paquete_form = paquete_form)
 
     # POST
     if request.method == "POST":
         package_form = formpy.Package(request.form)
 
-        # form validate
-        if package_form.validate():
-            package_query = Package.query.filter_by(id_package = package_form.id_package.data).first()
+        package_query = Package.query.filter_by(id_package = package_form.id_package.data).first()
 
-            if package_query is None:
-                package_new = Package(package_form.id_package.data,
-                                      package_form.client.data,
-                                      package_form.descrption_package.data,
-                                      package_form.estate_package.data)
-                db.session.add(package_new)
-                db.session.commit()
-
-                return jsonify(success = 1, message="El paquete a sido creado")
-
-            else:
-                return jsonify(success = 0,  error_msg=str("El paquete ya existe"))
-
+        if package_query is None:
+            package_new = Package(package_form.id_package.data,
+                                  package_form.client.data,
+                                  package_form.descrption_package.data,
+                                  package_form.estate_package.data)
+            db.session.add(package_new)
+            db.session.commit()
+            return jsonify(success = 1, message="El paquete a sido creado")
         else:
-            return jsonify(success = 0, error_msg=str("campos invalidos"))
+            return jsonify(success = 0,  error_msg=str("El paquete ya existe"))
+
+@app.route('/paquetes/list', methods = ['GET'])
+def lista_paquetes():
+    state_query = request.args.get('state', None)
+
+    if state_query is not None:
+        state_query = state_query.split("AND")
+        list_packages = []
+
+        #GET packages of DB for state
+        for i in state_query:
+            list_packages.append(Package.query.filter_by(estate_package = i).all())
+
+        flaten_list = [item.as_dict() for sublist in list_packages for item in sublist]
+        return jsonify(list=flaten_list)
 
 @app.route('/QR', methods=['GET'])
 def QR():
@@ -165,11 +184,22 @@ def QR():
     uri = 'https://chart.googleapis.com/chart?chl='+chl+"&chld=H&choe=UTF-8&chs=300x300&cht=qr"
     return render_template('QR.html', title = "QR", tables = tables, QR_form = QR_form, uri = uri, chl = chl)
 
+@app.route('/monitoreos', methods=['POST'])
+def monitor():
+
+    if request.method == "POST":
+        s =request.data
+        json_acceptable_string = s.replace("'", "\"")
+        d = json.loads(json_acceptable_string)
+        official_aux = Official.query.filter_by(id_official = d.get('official')).first()
+        print(help(Package.children))
+        #print(help(Package.children))
+    return jsonify(s="q")
 
 
 # main
 if __name__ == '__main__':
-    csrf.init_app(app) # init encript
+    #csrf.init_app(app) # init encript
     db.init_app(app) # init bd
 
     with app.app_context():

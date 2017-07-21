@@ -39,6 +39,7 @@ class Package(db.Model):
     client = db.Column(db.String(20), db.ForeignKey('Client.id_client'))
     descrption_package = db.Column(db.Text(), nullable = False)
     estate_package = db.Column(db.String(20), nullable = False)
+    children = db.relationship('Official', secondary="monitor")
 
     def __init__(self, id_package, client, descrption_package, estate_package):
         self.id_package = id_package
@@ -46,9 +47,18 @@ class Package(db.Model):
         self.descrption_package = descrption_package
         self.estate_package = estate_package
 
+    def as_dict(self):
+        obj_d = {
+            'id_package': self.id_package,
+            'client': self.client,
+            'descrption_package': self.descrption_package,
+            'state_package': self.estate_package,
+        }
+        return obj_d
+
 monitor = db.Table('monitor',
                     db.Column('id_monitor', db.String(20), primary_key = True, nullable = True),
-                    db.Column('package', db.String(20), db.ForeignKey('Package.id_package')),
+                    db.Column('id_package', db.String(20), db.ForeignKey('Package.id_package')),
                     db.Column('official', db.String(20), db.ForeignKey('Official.id_official')),
                     db.Column('long_monitor', db.Float(), nullable = False),
                     db.Column('lati_monitor', db.Float(), nullable = False),

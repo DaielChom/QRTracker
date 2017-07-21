@@ -33,15 +33,11 @@ class Client(Form):
 
 class Package(Form):
 
-    # Validations
-    validacion_tamano = validators.length(min = 4, max = 25)
-    validacion_requerido = validators.Required(message="Requerido")
-
     # Atributes
-    id_package = StringField("ID", [validacion_tamano, validacion_requerido] )
+    id_package = StringField("ID")
     client = SelectField('Client', choices=[])
-    descrption_package = TextField('Desrciption', [validacion_requerido])
-    estate_package = SelectField('Estate', choices=[('', ''),('En Bodega', 'En Bodega'),('Recogido', 'Recogido'),('Entregado', 'Entregado'),('Devuelto', 'Devuelto')])
+    descrption_package = TextField('Desrciption')
+    estate_package = SelectField('Estate', choices=[('', ''),('Bodega', 'Bodega'),('Recogido', 'Recogido'),('Entregado', 'Entregado'),('Devuelto', 'Devuelto')])
 
 class QR(Form):
 
@@ -49,4 +45,3 @@ class QR(Form):
     validacion_requerido = validators.Required(message="Requerido")
 
     package = SelectField('Package', choices=[])
-    
