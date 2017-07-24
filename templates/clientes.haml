@@ -10,8 +10,7 @@
 .raleway.absolute.width100.hidden#response_message
 %form.raleway.submit
   / Input necessary for CSRFProtect
-  %input{type:"hidden", name:"csrf_token", value:" {{ csrf_token() }}"}
-
+  
   / Rende Inputs in a loop
   {% for input in client_form %}
 

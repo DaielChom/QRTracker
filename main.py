@@ -188,12 +188,16 @@ def QR():
 def monitor():
 
     if request.method == "POST":
+
         s =request.data
         json_acceptable_string = s.replace("'", "\"")
         d = json.loads(json_acceptable_string)
+
         official_aux = Official.query.filter_by(id_official = d.get('official')).first()
-        print(help(Package.children))
-        #print(help(Package.children))
+        package_aux = Package.query.filter_by(id_package = d.get('id_package')).first()
+        package_aux.children.append(official_aux)
+        db.session.commit()
+
     return jsonify(s="q")
 
 

@@ -11,8 +11,7 @@
 %form.raleway.submit
 
   / Input necessary for CSRFProtect
-  %input{type:"hidden", name:"csrf_token", value:"{{csrf_token()}}"}
-
+  
   / Rende Inputs in a loop
   {% for input in funcionario_form %}
 

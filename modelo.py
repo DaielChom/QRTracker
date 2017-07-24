@@ -39,7 +39,7 @@ class Package(db.Model):
     client = db.Column(db.String(20), db.ForeignKey('Client.id_client'))
     descrption_package = db.Column(db.Text(), nullable = False)
     estate_package = db.Column(db.String(20), nullable = False)
-    children = db.relationship('Official', secondary="monitor")
+    children = db.relationship('Official', secondary="monitor", backref=db.backref('children', lazy= 'dynamic'))
 
     def __init__(self, id_package, client, descrption_package, estate_package):
         self.id_package = id_package
@@ -57,11 +57,12 @@ class Package(db.Model):
         return obj_d
 
 monitor = db.Table('monitor',
-                    db.Column('id_monitor', db.String(20), primary_key = True, nullable = True),
+                    #db.Column('id_monitor', db.String(20), primary_key = True, nullable = True),
                     db.Column('id_package', db.String(20), db.ForeignKey('Package.id_package')),
                     db.Column('official', db.String(20), db.ForeignKey('Official.id_official')),
-                    db.Column('long_monitor', db.Float(), nullable = False),
-                    db.Column('lati_monitor', db.Float(), nullable = False),
-                    db.Column('alti_monitor', db.Integer(), nullable = False),
-                    db.Column('hour_monitor', db.Time(), nullable = False),
-                    db.Column('date_monitor', db.Date(), nullable = False),)
+                    #db.Column('long_monitor', db.Float(), nullable = False),
+                    #db.Column('lati_monitor', db.Float(), nullable = False),
+                    #db.Column('alti_monitor', db.Integer(), nullable = False),
+                    #db.Column('hour_monitor', db.Time(), nullable = False),
+                    #db.Column('date_monitor', db.Date(), nullable = False),
+                    )
