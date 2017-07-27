@@ -7,6 +7,7 @@ from config import DevelopmentConfig
 from modelo import db
 from modelo import Client
 from modelo import Official
+from modelo import Monitor
 from modelo import Package
 from flask import render_template
 import formpy
@@ -193,9 +194,13 @@ def monitor():
         json_acceptable_string = s.replace("'", "\"")
         d = json.loads(json_acceptable_string)
 
-        official_aux = Official.query.filter_by(id_official = d.get('official')).first()
-        package_aux = Package.query.filter_by(id_package = d.get('id_package')).first()
-        package_aux.children.append(official_aux)
+        monitoreo = Monitor(d.get('id_package'), d.get('official'), d.get('long_monitor'), d.get('lati_monitor'), d.get('alti_monitor'), d.get('hour_monitor'), d.get('date_monitor'))
+        #official_aux = Official.query.filter_by(id_official = d.get('official')).first()
+        #package_aux = Package.query.filter_by(id_package = d.get('id_package')).first()
+
+        #package_aux.children.append(monitoreo)
+        #official_aux.children.append(monitoreo)
+        db.session.add(monitoreo)
         db.session.commit()
 
     return jsonify(s="q")

@@ -3,6 +3,30 @@ from flask_sqlalchemy import SQLAlchemy
 #Inicializa base de datos
 db = SQLAlchemy()
 
+class Monitor(db.Model):
+    __tablename__ = "Monitor"
+
+    id_package = db.Column(db.String(20), db.ForeignKey('Package.id_package'), primary_key = True)
+    id_official = db.Column(db.String(20), db.ForeignKey('Official.id_official'), primary_key = True)
+    long_monitor = db.Column(db.String(20), nullable = False)
+    lati_monitor = db.Column(db.String(20), nullable = False)
+    alti_monitor = db.Column(db.String(20), nullable = False)
+    hour_monitor= db.Column(db.String(20), nullable = False)
+    date_monitor = db.Column(db.String(20), nullable = False)
+
+    package = db.relationship('Package', backref="Monitor")
+    offical = db.relationship('Official', backref="Monitor")
+
+    def __init__(self, id_package, id_official, long_monitor, lati_monitor, alti_monitor, hour_monitor, date_monitor):
+        self.id_package = id_package
+        self.id_official = id_official
+        self.long_monitor = long_monitor
+        self.lati_monitor = lati_monitor
+        self.alti_monitor = alti_monitor
+        self.hour_monitor = hour_monitor
+        self.date_monitor = date_monitor
+
+
 class Official(db.Model):
 
     # Table name
@@ -39,7 +63,6 @@ class Package(db.Model):
     client = db.Column(db.String(20), db.ForeignKey('Client.id_client'))
     descrption_package = db.Column(db.Text(), nullable = False)
     estate_package = db.Column(db.String(20), nullable = False)
-    children = db.relationship('Official', secondary="monitor", backref=db.backref('children', lazy= 'dynamic'))
 
     def __init__(self, id_package, client, descrption_package, estate_package):
         self.id_package = id_package
@@ -55,14 +78,3 @@ class Package(db.Model):
             'state_package': self.estate_package,
         }
         return obj_d
-
-monitor = db.Table('monitor',
-                    #db.Column('id_monitor', db.String(20), primary_key = True, nullable = True),
-                    db.Column('id_package', db.String(20), db.ForeignKey('Package.id_package')),
-                    db.Column('official', db.String(20), db.ForeignKey('Official.id_official')),
-                    #db.Column('long_monitor', db.Float(), nullable = False),
-                    #db.Column('lati_monitor', db.Float(), nullable = False),
-                    #db.Column('alti_monitor', db.Integer(), nullable = False),
-                    #db.Column('hour_monitor', db.Time(), nullable = False),
-                    #db.Column('date_monitor', db.Date(), nullable = False),
-                    )
